@@ -65,7 +65,7 @@ public class UIText : System.Object
 	public UITextAlignMode alignMode = UITextAlignMode.Left;
 	public UITextVerticalAlignMode verticalAlignMode = UITextVerticalAlignMode.Top;
 	public UITextLineWrapMode wrapMode = UITextLineWrapMode.None;
-	public float lineWrapWidth = 500.0f;
+	public float lineWrapWidth = 500.0f;public Vector2 sizeForChar
 	
 
 	/// <summary>
@@ -535,7 +535,16 @@ public class UIText : System.Object
 		return new Vector2( dxMax > 0 ? dxMax : dx, dy + ( _fontDetails[77].h * scale ) );
 	}
 
+	public Vector2 sizeForChar(char c) {
+		return sizeForChar(c, 1.0f);	
+	}
+	
+	public Vector2 sizeForChar(char c, float scale) {
 
+		int charId = System.Convert.ToInt32(c);
+		return new Vector2(_fontDetails[charId].xadvance * scale, _fontDetails[charId].h * scale); 
+	}
+	
 	/// <summary>
 	/// Creates a new UITextInstance and draws the text at the given position.  The UITextInstance is mutable and can
 	/// be changed at any time
